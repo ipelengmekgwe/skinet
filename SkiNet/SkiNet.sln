@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkiNet.API", "SkiNet.API\SkiNet.API.csproj", "{978174EB-2E19-4C23-93C3-083A59947E44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{986140D0-AB64-45DD-8332-E1613382ADDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{61B212B1-F444-49BB-BB61-447E9331CAB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{978174EB-2E19-4C23-93C3-083A59947E44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978174EB-2E19-4C23-93C3-083A59947E44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978174EB-2E19-4C23-93C3-083A59947E44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978174EB-2E19-4C23-93C3-083A59947E44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{986140D0-AB64-45DD-8332-E1613382ADDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{986140D0-AB64-45DD-8332-E1613382ADDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{986140D0-AB64-45DD-8332-E1613382ADDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{986140D0-AB64-45DD-8332-E1613382ADDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B212B1-F444-49BB-BB61-447E9331CAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B212B1-F444-49BB-BB61-447E9331CAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B212B1-F444-49BB-BB61-447E9331CAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B212B1-F444-49BB-BB61-447E9331CAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E09A8254-F5BE-4260-B76D-76125E38FC65}
+	EndGlobalSection
+EndGlobal
