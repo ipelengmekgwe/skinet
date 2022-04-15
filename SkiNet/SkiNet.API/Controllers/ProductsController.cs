@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using Core.Interfaces;
 using Core.Specifications;
 using Models;
-using System.Linq;
 using AutoMapper;
+using SkiNet.API.Errors;
+using Microsoft.AspNetCore.Http;
 
 namespace SkiNet.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly IGenericRepository<Product> _productsReop;
         private readonly IGenericRepository<ProductBrand> _productsBrandRepo;
@@ -41,11 +40,15 @@ namespace SkiNet.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<ProductToReturnDto>> GetProduct(int id)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(id);
 
             var product = await _productsReop.GetEntityWithSpecAsync(spec);
+
+            if (product == null) return NotFound(new ApiResponse(StatusCodes.Status404NotFound));
 
             return _mapper.Map<Product, ProductToReturnDto>(product);
         }
