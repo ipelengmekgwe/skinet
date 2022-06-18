@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SkiNet.API.Extensions;
 using SkiNet.API.Helpers;
 using SkiNet.API.Middleware;
+using StackExchange.Redis;
 
 namespace SkiNet.API
 {
@@ -24,8 +25,14 @@ namespace SkiNet.API
         {
             
             services.AddAutoMapper(typeof(MappingProfiles));
-            services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSingleton<IConnectionMultiplexer>(c =>
+            {
+                var configuration = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(configuration);
+            });
 
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
