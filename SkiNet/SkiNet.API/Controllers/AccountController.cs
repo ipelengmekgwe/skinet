@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using SkiNet.API.Errors;
 using SkiNet.API.Extensions;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace SkiNet.API.Controllers
@@ -93,6 +92,11 @@ namespace SkiNet.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            if (CheckEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationResponse { Errors = new[] { "Email is in use" } });
+            }
+
             var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,
