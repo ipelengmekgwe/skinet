@@ -28,12 +28,20 @@ export class BasketService {
   }
 
   setBasket(basket: IBasket) {
-    return this.http.post(this.baseUrl + 'basket', basket).subscribe((response: IBasket) => {
-      this.basketSource.next(response);
-      this.calculateTotals();
-    }, error => {
-      console.log(error);
+    return this.http.post(this.baseUrl + 'basket', basket).subscribe({
+      next: (response: IBasket) => {
+        this.basketSource.next(response);
+        this.calculateTotals();
+      },
+      error: (error) => console.log(error)
     });
+
+    // return this.http.post(this.baseUrl + 'basket', basket).subscribe((response: IBasket) => {
+    //   this.basketSource.next(response);
+    //   this.calculateTotals();
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
   getCurrentBasketValue() {
@@ -83,15 +91,15 @@ export class BasketService {
   }
 
   deleteBasket(basket: IBasket) {
-    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(() => {
-      this.basketSource.next(null);
-      this.basketTotalSource.next(null);
-      localStorage.removeItem('basket_id');
-    }, error => {
-      console.log(error);
+    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe({
+      next: () => {
+        this.basketSource.next(null);
+        this.basketTotalSource.next(null);
+        localStorage.removeItem('basket_id');
+      },
+      error: (error) => console.log(error)
     });
   }
-
 
   private addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
     console.log(items);
