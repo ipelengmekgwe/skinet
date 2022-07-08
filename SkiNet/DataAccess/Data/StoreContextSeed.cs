@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Entities.OrderAggregate;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,20 @@ namespace DataAccess.Data
                     {
                         product.Id = 0;
                         context.Products.Add(product);
+                    }
+
+                    await context.SaveChangesAsync();
+                }
+
+                if (!context.DeliveryMethods.Any())
+                {
+                    var dmData = File.ReadAllText("../DataAccess/Data/SeedData/delivery.json");
+                    var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
+
+                    foreach (var method in methods)
+                    {
+                        method.Id = 0;
+                        context.DeliveryMethods.Add(method);
                     }
 
                     await context.SaveChangesAsync();
