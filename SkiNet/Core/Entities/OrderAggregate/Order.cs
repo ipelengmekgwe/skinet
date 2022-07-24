@@ -29,7 +29,8 @@ namespace Core.Entities.OrderAggregate
 
         public decimal GetTotal()
         {
-            return Subtotal + DeliveryMethod.Price;
+            var price = DeliveryMethod != null ? DeliveryMethod.Price : 0;
+            return Subtotal + price;
         }
     }
 }
