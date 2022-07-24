@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using SkiNet.API.Errors;
 using SkiNet.API.Extensions;
+using System;
 using System.Threading.Tasks;
 
 namespace SkiNet.API.Controllers
